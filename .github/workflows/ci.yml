@@ -321,8 +321,9 @@ jobs:
           tags: |
             ghcr.io/${{ github.repository_owner }}/carvalue-uae-backend:${{ steps.tags.outputs.sha }}
             ghcr.io/${{ github.repository_owner }}/carvalue-uae-backend:latest
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          # cache disabled temporarily — corrupted GHA blob
+          # cache-from: type=gha
+          # cache-to: type=gha,mode=max
 
       - name: Record deployed image for rollback
         run: |
