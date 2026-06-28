@@ -87,8 +87,8 @@ def predict_single(model, data: dict, confidence_lookup: dict = None) -> dict:
         "has_scratch": has_scratch,
     }])
 
-    log_price = model.predict(features)[0]
-    price = int(np.exp(log_price))
+    raw_price = model.predict(features)[0]
+    price = int(raw_price)
     price = round(price / 500) * 500
 
     # Dynamic confidence scoring based on data density
@@ -131,7 +131,12 @@ def main():
         sys.exit(1)
 
     verify_model_integrity()
-    model = joblib.load(MODEL_PATH)
+    raw = joblib.load(MODEL_PATH)
+    # Model may be a dict with pipeline + metadata, or a bare Pipeline
+    if isinstance(raw, dict):
+        model = raw.get("pipeline", raw)
+    else:
+        model = raw
     print(f"Model loaded from {MODEL_PATH}")
 
     # Load confidence lookup table
