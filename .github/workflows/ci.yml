@@ -229,8 +229,7 @@ jobs:
         uses: trufflesecurity/trufflehog@v3.82.0
         with:
           path: ./
-          base: main
-          head: HEAD
+          extra_args: --only-verified
         continue-on-error: true
 
   # ─── INTEGRATION TESTS ──────────────────────────────────────────────
@@ -315,8 +314,8 @@ jobs:
           file: ./backend/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}/backend:${{ steps.tags.outputs.sha }}
-            ghcr.io/${{ github.repository }}/backend:latest
+            ghcr.io/${{ github.repository_owner }}/carvalue-uae-backend:${{ steps.tags.outputs.sha }}
+            ghcr.io/${{ github.repository_owner }}/carvalue-uae-backend:latest
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
