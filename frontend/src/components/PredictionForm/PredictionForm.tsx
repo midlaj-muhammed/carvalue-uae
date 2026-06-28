@@ -17,6 +17,7 @@ export default function PredictionForm() {
     register,
     handleSubmit,
     watch,
+    control,
     resetField,
     formState: { errors },
   } = useForm<PredictionFormData>({
@@ -66,6 +67,7 @@ export default function PredictionForm() {
 
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <FormFields
+            control={control}
             register={register}
             errors={errors}
             makes={makes}

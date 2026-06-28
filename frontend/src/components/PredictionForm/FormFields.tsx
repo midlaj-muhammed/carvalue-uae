@@ -1,4 +1,4 @@
-import { UseFormRegister, FieldErrors } from "react-hook-form";
+import { Control, Controller, UseFormRegister, FieldErrors } from "react-hook-form";
 import type { PredictionFormData } from "./schema";
 import {
   BODY_TYPES,
@@ -8,8 +8,16 @@ import {
   COLORS,
   LOCATIONS,
 } from "./schema";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/Select";
 
 interface Props {
+  control: Control<PredictionFormData>;
   register: UseFormRegister<PredictionFormData>;
   errors: FieldErrors<PredictionFormData>;
   makes: string[];
@@ -18,6 +26,7 @@ interface Props {
 }
 
 export default function FormFields({
+  control,
   register,
   errors,
   makes,
@@ -42,37 +51,57 @@ export default function FormFields({
       {/* Make */}
       <div>
         <label className={labelClass}>Make</label>
-        <select {...register("make")} className={inputClass} defaultValue="">
-          <option value="" className="bg-paper">
-            Select make...
-          </option>
-          {makes.map((m) => (
-            <option key={m} value={m} className="bg-paper">
-              {m}
-            </option>
-          ))}
-        </select>
+        <Controller
+          name="make"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Select
+              value={field.value}
+              onValueChange={field.onChange}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select make..." />
+              </SelectTrigger>
+              <SelectContent>
+                {makes.map((m) => (
+                  <SelectItem key={m} value={m}>
+                    {m}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
         {err("make")}
       </div>
 
       {/* Model */}
       <div>
         <label className={labelClass}>Model</label>
-        <select
-          {...register("model")}
-          className={inputClass}
-          disabled={!selectedMake}
+        <Controller
+          name="model"
+          control={control}
           defaultValue=""
-        >
-          <option value="" className="bg-paper">
-            {selectedMake ? "Select model..." : "Select make first"}
-          </option>
-          {models.map((m) => (
-            <option key={m} value={m} className="bg-paper">
-              {m}
-            </option>
-          ))}
-        </select>
+          render={({ field }) => (
+            <Select
+              value={field.value}
+              onValueChange={field.onChange}
+              disabled={!selectedMake}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder={selectedMake ? "Select model..." : "Select make first"} />
+              </SelectTrigger>
+              <SelectContent>
+                {models.map((m) => (
+                  <SelectItem key={m} value={m}>
+                    {m}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
         {err("model")}
       </div>
 
@@ -105,96 +134,168 @@ export default function FormFields({
       {/* Body Type */}
       <div>
         <label className={labelClass}>Body Type</label>
-        <select {...register("body_type")} className={inputClass} defaultValue="">
-          <option value="" className="bg-paper">
-            Select body type...
-          </option>
-          {BODY_TYPES.map((bt) => (
-            <option key={bt} value={bt} className="bg-paper">
-              {bt}
-            </option>
-          ))}
-        </select>
+        <Controller
+          name="body_type"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Select
+              value={field.value}
+              onValueChange={field.onChange}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select body type..." />
+              </SelectTrigger>
+              <SelectContent>
+                {BODY_TYPES.map((bt) => (
+                  <SelectItem key={bt} value={bt}>
+                    {bt}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
         {err("body_type")}
       </div>
 
       {/* Cylinders */}
       <div>
         <label className={labelClass}>Cylinders</label>
-        <select {...register("cylinders")} className={inputClass} defaultValue="">
-          <option value="" className="bg-paper">
-            Select cylinders...
-          </option>
-          {CYLINDERS.map((c) => (
-            <option key={c} value={c} className="bg-paper">
-              {c}
-            </option>
-          ))}
-        </select>
+        <Controller
+          name="cylinders"
+          control={control}
+          defaultValue={undefined}
+          render={({ field }) => (
+            <Select
+              value={field.value?.toString() || ""}
+              onValueChange={(v) => field.onChange(parseInt(v))}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select cylinders..." />
+              </SelectTrigger>
+              <SelectContent>
+                {CYLINDERS.map((c) => (
+                  <SelectItem key={c} value={c.toString()}>
+                    {c}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
         {err("cylinders")}
       </div>
 
       {/* Transmission */}
       <div>
         <label className={labelClass}>Transmission</label>
-        <select {...register("transmission")} className={inputClass} defaultValue="">
-          <option value="" className="bg-paper">
-            Select transmission...
-          </option>
-          {TRANSMISSIONS.map((t) => (
-            <option key={t} value={t} className="bg-paper">
-              {t}
-            </option>
-          ))}
-        </select>
+        <Controller
+          name="transmission"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Select
+              value={field.value}
+              onValueChange={field.onChange}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select transmission..." />
+              </SelectTrigger>
+              <SelectContent>
+                {TRANSMISSIONS.map((t) => (
+                  <SelectItem key={t} value={t}>
+                    {t}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
         {err("transmission")}
       </div>
 
       {/* Fuel Type */}
       <div>
         <label className={labelClass}>Fuel Type</label>
-        <select {...register("fuel_type")} className={inputClass} defaultValue="">
-          <option value="" className="bg-paper">
-            Select fuel type...
-          </option>
-          {FUEL_TYPES.map((f) => (
-            <option key={f} value={f} className="bg-paper">
-              {f}
-            </option>
-          ))}
-        </select>
+        <Controller
+          name="fuel_type"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Select
+              value={field.value}
+              onValueChange={field.onChange}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select fuel type..." />
+              </SelectTrigger>
+              <SelectContent>
+                {FUEL_TYPES.map((f) => (
+                  <SelectItem key={f} value={f}>
+                    {f}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
         {err("fuel_type")}
       </div>
 
       {/* Color */}
       <div>
         <label className={labelClass}>Color</label>
-        <select {...register("color")} className={inputClass} defaultValue="">
-          <option value="" className="bg-paper">
-            Select color...
-          </option>
-          {COLORS.map((c) => (
-            <option key={c} value={c} className="bg-paper">
-              {c}
-            </option>
-          ))}
-        </select>
+        <Controller
+          name="color"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Select
+              value={field.value}
+              onValueChange={field.onChange}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select color..." />
+              </SelectTrigger>
+              <SelectContent>
+                {COLORS.map((c) => (
+                  <SelectItem key={c} value={c}>
+                    {c}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
         {err("color")}
       </div>
 
       {/* Location */}
       <div>
         <label className={labelClass}>Location</label>
-        <select {...register("location")} className={inputClass} defaultValue="">
-          <option value="" className="bg-paper">
-            Select location...
-          </option>
-          {LOCATIONS.map((l) => (
-            <option key={l} value={l} className="bg-paper">
-              {l}
-            </option>
-          ))}
-        </select>
+        <Controller
+          name="location"
+          control={control}
+          defaultValue=""
+          render={({ field }) => (
+            <Select
+              value={field.value}
+              onValueChange={field.onChange}
+            >
+              <SelectTrigger>
+                <SelectValue placeholder="Select location..." />
+              </SelectTrigger>
+              <SelectContent>
+                {LOCATIONS.map((l) => (
+                  <SelectItem key={l} value={l}>
+                    {l}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+        />
         {err("location")}
       </div>
     </div>
