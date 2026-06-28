@@ -18,9 +18,9 @@ COPY backend/ ./backend/
 # Copy ML code and data
 COPY ml/ ./ml/
 
-# Train model during build (so it's baked into the image)
-RUN MODEL_PATH=ml/model.pkl uv run python ml/train.py
+# Train model during build (use backend package env which has ML deps)
+RUN MODEL_PATH=ml/model.pkl uv run --package carvalue-backend python ml/train.py
 
 EXPOSE 8000
 
-CMD ["uv", "run", "uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uv", "run", "--package", "carvalue-backend", "uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
