@@ -1,0 +1,14 @@
+frontend/
+ml/data/
+ml/registry/
+.ml/__pycache__/
+__pycache__/
+.git/
+.github/
+plan/
+report/
+skills/
+*.pyc
+node_modules/
+.venv/
+.venv/
