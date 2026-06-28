@@ -131,7 +131,7 @@ def check_model_ratchet(metrics):
         sys.exit(1)
 
 
-def run_eval_fixtures(model):
+def run_eval_fixtures(model, target_encoding=None):
     """Run all eval fixtures through the model and validate outputs."""
     if not FIXTURES_PATH.exists():
         print("WARNING: eval_fixtures.json not found — skipping fixture check.")
@@ -150,7 +150,7 @@ def run_eval_fixtures(model):
     print(f"\nRunning {len(fixtures)} eval fixtures...")
     from predict import predict_single
     for i, fixture in enumerate(fixtures):
-        result = predict_single(model, fixture, confidence_lookup)
+        result = predict_single(model, fixture, confidence_lookup, target_encoding=target_encoding)
         # Validate output shape
         assert "predicted_price" in result, f"Fixture {i}: missing predicted_price"
         assert "price_min" in result, f"Fixture {i}: missing price_min"
@@ -203,12 +203,14 @@ def evaluate():
     # Model may be a dict with pipeline + metadata, or a bare Pipeline
     if isinstance(raw, dict):
         model = raw.get("pipeline", raw)
+        target_encoding = raw.get("target_encoding", {})
     else:
         model = raw
+        target_encoding = {}
     print(f"Model loaded from {MODEL_PATH}")
 
     # Run eval fixtures through the model
-    run_eval_fixtures(model)
+    run_eval_fixtures(model, target_encoding=target_encoding)
 
     # Three-way stratified split: train (64%), val (16%), eval (20%)
     X_train, X_val, X_eval, y_train, y_val, y_eval = load_and_preprocess()

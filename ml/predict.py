@@ -48,7 +48,7 @@ DEFAULT_INPUT = {
 }
 
 
-def predict_single(model, data: dict, confidence_lookup: dict = None) -> dict:
+def predict_single(model, data: dict, confidence_lookup: dict = None, target_encoding: dict = None) -> dict:
     """Run prediction for a single input dict with dynamic confidence scoring."""
     # Normalize casing (model trained on lowercase)
     make = data["make"].strip().lower()
@@ -86,6 +86,16 @@ def predict_single(model, data: dict, confidence_lookup: dict = None) -> dict:
         "has_repair": has_repair,
         "has_scratch": has_scratch,
     }])
+
+    # Add target-encoded features from training data
+    if target_encoding:
+        mk_map = target_encoding.get("mk_map", {})
+        mm_map = target_encoding.get("mm_map", {})
+        mml_map = target_encoding.get("mml_map", {})
+        global_mean = target_encoding.get("global_mean", 50000)
+        features["Make_price"] = mk_map.get(make, global_mean)
+        features["MM_price"] = mm_map.get(model_name, global_mean)
+        features["MML_price"] = mml_map.get((make, model_name, location), global_mean)
 
     raw_price = model.predict(features)[0]
     price = int(raw_price)
