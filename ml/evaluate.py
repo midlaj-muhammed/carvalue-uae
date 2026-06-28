@@ -199,7 +199,12 @@ def evaluate():
         sys.exit(1)
 
     verify_model_integrity()
-    model = joblib.load(MODEL_PATH)
+    raw = joblib.load(MODEL_PATH)
+    # Model may be a dict with pipeline + metadata, or a bare Pipeline
+    if isinstance(raw, dict):
+        model = raw.get("pipeline", raw)
+    else:
+        model = raw
     print(f"Model loaded from {MODEL_PATH}")
 
     # Run eval fixtures through the model
