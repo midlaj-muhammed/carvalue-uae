@@ -1,8 +1,24 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
+  <!-- Background circle — matches the logo exactly -->
   <circle cx="16" cy="16" r="16" fill="#111111"/>
-  <g transform="translate(4,4) scale(1.333)" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <path d="M3.34 19a10 10 0 1 1 17.32 0"/>
-    <path d="m12 14 4-4"/>
-    <circle cx="12" cy="14" r="2" fill="#ffffff" stroke="none"/>
-  </g>
+
+  <!-- Gauge icon — lucide paths, manually centered at 16,16 -->
+  <!-- Arc (bottom semicircle) -->
+  <path
+    d="M6.2 23.8a11 11 0 1 1 19.6 0"
+    stroke="#ffffff"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    fill="none"
+  />
+  <!-- Needle -->
+  <line
+    x1="16" y1="16" x2="21" y2="11"
+    stroke="#ffffff"
+    stroke-width="1.8"
+    stroke-linecap="round"
+  />
+  <!-- Center dot -->
+  <circle cx="16" cy="16" r="2" fill="#ffffff"/>
 </svg>
