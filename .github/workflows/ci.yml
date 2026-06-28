@@ -36,12 +36,11 @@ jobs:
         run: |
           cd ..
           uv sync
-          uv pip install pandas numpy scikit-learn xgboost joblib
 
       - name: Train model
         run: |
           if [ -f train.py ]; then
-            python train.py
+            uv run python train.py
           else
             echo "WARNING: train.py not found — using existing model.pkl if present"
           fi
@@ -73,7 +72,7 @@ jobs:
 
       - name: Evaluate model (accuracy gate + ratchet + fixtures)
         run: |
-          python evaluate.py
+          uv run python evaluate.py
         # evaluate.py: ratchet checks baseline.json, runs 50 fixtures, fails if R² < 0.82
 
       - name: Upload model artifact

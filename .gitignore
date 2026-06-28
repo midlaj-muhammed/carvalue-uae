@@ -63,5 +63,4 @@ plan/
 skills/
 ml/diagnose.py
 ml/tune.py
-ml/pyproject.toml
 ml/registry/__init__.py
