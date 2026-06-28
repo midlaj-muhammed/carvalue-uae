@@ -25,10 +25,14 @@ export default function FeaturesSection() {
         Why CarValue
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-        {features.map((f) => (
+        {features.map((f, i) => (
           <div
             key={f.title}
-            className="bg-linen rounded-editorial p-8 hover:bg-sand/30 transition-colors"
+            className="bg-linen rounded-editorial p-8 transition-colors duration-200 hover:bg-sand/30"
+            style={{
+              opacity: 0,
+              animation: `staggerFadeInUp 400ms cubic-bezier(0.23,1,0.32,1) ${i * 50}ms forwards`,
+            }}
           >
             <div className="w-10 h-10 rounded-xl bg-paper border border-border-light flex items-center justify-center mb-5">
               <f.icon className="w-5 h-5 text-obsidian" strokeWidth={1.5} />

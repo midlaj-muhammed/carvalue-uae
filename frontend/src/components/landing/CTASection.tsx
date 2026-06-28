@@ -12,7 +12,7 @@ export default function CTASection() {
         </p>
         <Link
           to="/predict"
-          className="inline-block bg-paper text-onyx px-8 py-3.5 rounded-pill text-[13px] font-medium tracking-wide hover:bg-paper/90 transition-colors no-underline"
+          className="btn-press inline-block bg-paper text-onyx px-8 py-3.5 rounded-pill text-[13px] font-medium tracking-wide hover:bg-paper/90 transition-colors duration-200 no-underline"
         >
           Start Valuing
         </Link>

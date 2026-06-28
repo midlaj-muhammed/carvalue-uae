@@ -28,10 +28,14 @@ export default function ProcessSection() {
         How It Works
       </h2>
       <div className="space-y-0">
-        {steps.map((s) => (
+        {steps.map((s, i) => (
           <div
             key={s.num}
             className="flex gap-5 py-6 border-b border-border-light last:border-b-0"
+            style={{
+              opacity: 0,
+              animation: `staggerFadeInUp 400ms cubic-bezier(0.23,1,0.32,1) ${i * 50}ms forwards`,
+            }}
           >
             <div className="flex-shrink-0 w-10 h-10 rounded-full border border-border-light flex items-center justify-center">
               <span className="font-geist font-medium text-obsidian text-sm">

@@ -16,13 +16,13 @@ export default function HeroSection() {
           <div className="mt-10 flex items-center gap-4">
             <Link
               to="/predict"
-              className="bg-onyx text-paper px-7 py-3 rounded-pill text-[13px] font-medium tracking-wide hover:bg-obsidian/90 transition-colors no-underline"
+              className="btn-press inline-block bg-onyx text-paper px-7 py-3 rounded-pill text-[13px] font-medium tracking-wide hover:bg-obsidian/90 transition-colors duration-200 no-underline"
             >
               Start Valuing
             </Link>
             <a
               href="#features"
-              className="text-obsidian text-[13px] font-medium tracking-wide hover:text-graphite transition-colors no-underline"
+              className="text-obsidian text-[13px] font-medium tracking-wide hover:text-graphite transition-colors duration-200 no-underline"
             >
               See how it works &rarr;
             </a>

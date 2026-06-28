@@ -81,9 +81,9 @@ export default function PredictionForm() {
           className="mt-8 w-full h-[52px] rounded-pill font-geist font-medium text-[13px] tracking-wide uppercase
                      bg-onyx text-paper
                      hover:bg-obsidian/90
-                     active:scale-[0.98]
+                     active:scale-[0.97]
                      disabled:opacity-40 disabled:cursor-not-allowed
-                     transition-all duration-200 ease-out
+                     transition-transform duration-150 ease-out
                      flex items-center justify-center gap-2.5"
         >
           {mutation.isPending ? (

@@ -50,10 +50,10 @@ const config: Config = {
         editorial: "32px",
       },
       animation: {
-        "fade-in": "fadeIn 0.8s ease-out forwards",
-        "fade-in-up": "fadeInUp 0.7s ease-out forwards",
-        "slide-in-right": "slideInRight 0.6s ease-out forwards",
-        "scale-in": "scaleIn 0.5s ease-out forwards",
+        "fade-in": "fadeIn 500ms cubic-bezier(0.23,1,0.32,1) forwards",
+        "fade-in-up": "fadeInUp 400ms cubic-bezier(0.23,1,0.32,1) forwards",
+        "slide-in-right": "slideInRight 350ms cubic-bezier(0.23,1,0.32,1) forwards",
+        "scale-in": "scaleIn 300ms cubic-bezier(0.23,1,0.32,1) forwards",
         "pulse-gold": "pulseGold 2s ease-in-out infinite",
         shimmer: "shimmer 2.5s ease-in-out infinite",
       },
@@ -63,11 +63,11 @@ const config: Config = {
           "100%": { opacity: "1" },
         },
         fadeInUp: {
-          "0%": { opacity: "0", transform: "translateY(20px)" },
+          "0%": { opacity: "0", transform: "translateY(12px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         slideInRight: {
-          "0%": { opacity: "0", transform: "translateX(-20px)" },
+          "0%": { opacity: "0", transform: "translateX(-12px)" },
           "100%": { opacity: "1", transform: "translateX(0)" },
         },
         scaleIn: {
