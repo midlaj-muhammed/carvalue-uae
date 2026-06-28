@@ -1,0 +1,115 @@
+{
+  "versions": [
+    {
+      "version": "39123d3",
+      "trained_at": "2026-06-28",
+      "metrics": {
+        "r2_score": 0.6805332291604824,
+        "mae_aed": 1,
+        "mape_pct": 4.18276244954891
+      },
+      "dataset_hash": "47ee000be62557fd8edbee9ed709d2b41533d3db6f0416f1f3fee4325d55d9aa",
+      "file_path": "/home/midlaj/Documents/CarValue UAE/ml/registry/model_39123d3.pkl",
+      "status": "staging"
+    },
+    {
+      "version": "036993c",
+      "trained_at": "2026-06-28",
+      "metrics": {
+        "r2_score": 0.7313079128723966,
+        "mae_aed": 1,
+        "mape_pct": 3.882956908375884
+      },
+      "dataset_hash": "47ee000be62557fd8edbee9ed709d2b41533d3db6f0416f1f3fee4325d55d9aa",
+      "file_path": "/home/midlaj/Documents/CarValue UAE/ml/registry/model_036993c.pkl",
+      "status": "staging"
+    },
+    {
+      "version": "5a20348",
+      "trained_at": "2026-06-28",
+      "metrics": {
+        "r2_score": 0.7171394056373632,
+        "mae_aed": 92024,
+        "mape_pct": 53.48683101941305
+      },
+      "dataset_hash": "47ee000be62557fd8edbee9ed709d2b41533d3db6f0416f1f3fee4325d55d9aa",
+      "file_path": "/home/midlaj/Documents/CarValue UAE/ml/registry/model_5a20348.pkl",
+      "status": "staging"
+    },
+    {
+      "version": "d6c158e",
+      "trained_at": "2026-06-28",
+      "metrics": {
+        "r2_score": 0.805742621421814,
+        "mae_aed": 106437,
+        "mape_pct": 97.0828044080608
+      },
+      "dataset_hash": "47ee000be62557fd8edbee9ed709d2b41533d3db6f0416f1f3fee4325d55d9aa",
+      "file_path": "/home/midlaj/Documents/CarValue UAE/ml/registry/model_d6c158e.pkl",
+      "status": "staging"
+    },
+    {
+      "version": "0445fe4",
+      "trained_at": "2026-06-28",
+      "metrics": {
+        "r2_score": 0.8486478924751282,
+        "mae_aed": 95915,
+        "mape_pct": 82.18355307394604
+      },
+      "dataset_hash": "47ee000be62557fd8edbee9ed709d2b41533d3db6f0416f1f3fee4325d55d9aa",
+      "file_path": "/home/midlaj/Documents/CarValue UAE/ml/registry/model_0445fe4.pkl",
+      "status": "staging"
+    },
+    {
+      "version": "6004af3",
+      "trained_at": "2026-06-28",
+      "metrics": {
+        "r2_score": 0.7705584764480591,
+        "mae_aed": 100010,
+        "mape_pct": 81.45211128159552
+      },
+      "dataset_hash": "47ee000be62557fd8edbee9ed709d2b41533d3db6f0416f1f3fee4325d55d9aa",
+      "file_path": "/home/midlaj/Documents/CarValue UAE/ml/registry/model_6004af3.pkl",
+      "status": "staging"
+    },
+    {
+      "version": "20afa7c",
+      "trained_at": "2026-06-28",
+      "metrics": {
+        "r2_score": 0.772980809211731,
+        "mae_aed": 99973,
+        "mape_pct": 76.42176338968395
+      },
+      "dataset_hash": "47ee000be62557fd8edbee9ed709d2b41533d3db6f0416f1f3fee4325d55d9aa",
+      "file_path": "/home/midlaj/Documents/CarValue UAE/ml/registry/model_20afa7c.pkl",
+      "status": "staging"
+    },
+    {
+      "version": "20afa7c",
+      "trained_at": "2026-06-28",
+      "metrics": {
+        "r2_score": 0.772980809211731,
+        "mae_aed": 99973,
+        "mape_pct": 76.42176338968395
+      },
+      "dataset_hash": "47ee000be62557fd8edbee9ed709d2b41533d3db6f0416f1f3fee4325d55d9aa",
+      "file_path": "/home/midlaj/Documents/CarValue UAE/ml/registry/model_20afa7c.pkl",
+      "status": "staging"
+    },
+    {
+      "version": "a687ba3",
+      "trained_at": "2026-06-28",
+      "metrics": {
+        "r2_score": 0.7795761823654175,
+        "mae_aed": 98571,
+        "mape_pct": 76.19292521494077
+      },
+      "dataset_hash": "47ee000be62557fd8edbee9ed709d2b41533d3db6f0416f1f3fee4325d55d9aa",
+      "file_path": "/home/midlaj/Documents/CarValue UAE/ml/registry/model_a687ba3.pkl",
+      "status": "staging"
+    }
+  ],
+  "current": "a687ba3",
+  "schema_version": "1.0.0",
+  "description": "Model registry manifest. Each version entry contains: version (short SHA-256), trained_at (ISO date), metrics (R2, MAE, MAPE), dataset_hash, file_path, status (staging|production|retired)."
+}
