@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Outfit", sans-serif;
+  background-color: #0A1628;
+  color: #E8E6E1;
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0A1628;
+}
+::-webkit-scrollbar-thumb {
+  background: #C9A84C40;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A84C80;
+}
+
+/* Prevent iOS zoom on inputs */
+input,
+select,
+textarea {
+  font-size: 16px !important;
+}
+
+/* Custom select arrow */
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23C9A84C' d='M6 8.5L1 3.5h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px !important;
+}
+
+/* Focus ring utility */
+@layer components {
+  .input-glass {
+    @apply w-full h-12 px-4 bg-white/[0.04] border border-white/[0.08] rounded-xl
+           text-[15px] text-white/90 font-body placeholder:text-white/25
+           focus:outline-none focus:border-gold/40 focus:bg-white/[0.06]
+           transition-all duration-300 ease-out;
+  }
+  .input-glass:disabled {
+    @apply opacity-30 cursor-not-allowed;
+  }
+
+  .label-glass {
+    @apply block text-[11px] font-medium uppercase tracking-[0.12em] text-white/40 mb-2 font-body;
+  }
+
+  .card-glass {
+    @apply bg-white/[0.03] backdrop-blur-xl border border-white/[0.06] rounded-2xl;
+  }
+}
+
+/* Shimmer loading effect */
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    rgba(201, 168, 76, 0) 0%,
+    rgba(201, 168, 76, 0.08) 50%,
+    rgba(201, 168, 76, 0) 100%
+  );
+  background-size: 200% 100%;
+}
