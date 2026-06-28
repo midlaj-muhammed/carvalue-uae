@@ -32,7 +32,7 @@ export default function FormFields({
     );
 
   const inputClass =
-    "w-full h-[52px] px-4 bg-linen border border-border-light rounded-[10px] text-[15px] text-obsidian font-geist placeholder:text-ash focus:outline-none focus:border-obsidian/30 focus:bg-paper transition-all duration-200";
+    "w-full h-[52px] px-4 bg-linen border border-obsidian/[0.06] rounded-full text-[15px] text-obsidian font-geist placeholder:text-ash focus:outline-none focus:border-obsidian/30 focus:bg-paper";
 
   const labelClass =
     "block text-[11px] font-medium uppercase tracking-[0.14em] text-graphite mb-2 font-geist";

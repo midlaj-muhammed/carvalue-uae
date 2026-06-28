@@ -55,50 +55,49 @@ export default function PredictionForm() {
   };
 
   return (
-    <div className="bg-paper border border-border-light rounded-editorial p-8 sm:p-10">
-      {/* Section label */}
-      <div className="flex items-center gap-3 mb-8">
-        <div className="h-px flex-1 bg-border-light" />
-        <span className="text-[10px] uppercase tracking-[0.2em] text-ash font-geist whitespace-nowrap">
-          Vehicle Details
-        </span>
-        <div className="h-px flex-1 bg-border-light" />
+    <div className="p-[6px] rounded-[2rem] bg-obsidian/[0.04] border border-obsidian/[0.06]">
+      <div className="bg-paper rounded-[calc(2rem-6px)] p-8 sm:p-10">
+        {/* Eyebrow tag */}
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-linen border border-obsidian/[0.06] mb-8">
+          <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-graphite">
+            Vehicle Details
+          </span>
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <FormFields
+            register={register}
+            errors={errors}
+            makes={makes}
+            models={models}
+            selectedMake={selectedMake}
+          />
+
+          {/* Submit — Button-in-Button */}
+          <div className="mt-8">
+            <button
+              type="submit"
+              disabled={mutation.isPending}
+              className="group btn-press w-full flex items-center justify-between h-[52px] rounded-full pl-7 pr-2 bg-onyx text-paper font-geist font-medium text-[13px] tracking-wide uppercase
+                         hover:bg-obsidian/90
+                         disabled:opacity-40 disabled:cursor-not-allowed
+                         transition-colors duration-200"
+            >
+              {mutation.isPending ? (
+                <span className="flex items-center gap-2">
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  <span>Analyzing Market Data...</span>
+                </span>
+              ) : (
+                <span>Get Estimate</span>
+              )}
+              <span className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center group-hover:translate-x-0.5 group-hover:scale-105 transition-all duration-200 flex-shrink-0">
+                <ArrowRight className="h-4 w-4" />
+              </span>
+            </button>
+          </div>
+        </form>
       </div>
-
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
-        <FormFields
-          register={register}
-          errors={errors}
-          makes={makes}
-          models={models}
-          selectedMake={selectedMake}
-        />
-
-        {/* Submit */}
-        <button
-          type="submit"
-          disabled={mutation.isPending}
-          className="mt-8 w-full h-[52px] rounded-pill font-geist font-medium text-[13px] tracking-wide uppercase
-                     bg-onyx text-paper
-                     hover:bg-obsidian/90
-                     active:scale-[0.97]
-                     disabled:opacity-40 disabled:cursor-not-allowed
-                     transition-transform duration-150 ease-out
-                     flex items-center justify-center gap-2.5"
-        >
-          {mutation.isPending ? (
-            <>
-              <Loader2 className="h-4 w-4 animate-spin" />
-              <span>Analyzing Market Data...</span>
-            </>
-          ) : (
-            <>
-              <span>Get Estimate</span>
-              <ArrowRight className="h-4 w-4" />
-            </>
-          )}
-        </button>
-      </form>
     </div>
   );
 }
