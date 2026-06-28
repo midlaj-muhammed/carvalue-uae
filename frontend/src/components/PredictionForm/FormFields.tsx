@@ -26,22 +26,28 @@ export default function FormFields({
 }: Props) {
   const err = (field: keyof PredictionFormData) =>
     errors[field] && (
-      <p className="text-[11px] text-red-400 mt-1.5 font-body">
+      <p className="text-[11px] text-red-500 mt-1.5 font-geist">
         {errors[field]?.message}
       </p>
     );
 
+  const inputClass =
+    "w-full h-[52px] px-4 bg-linen border border-border-light rounded-[10px] text-[15px] text-obsidian font-geist placeholder:text-ash focus:outline-none focus:border-obsidian/30 focus:bg-paper transition-all duration-200";
+
+  const labelClass =
+    "block text-[11px] font-medium uppercase tracking-[0.14em] text-graphite mb-2 font-geist";
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-5 gap-y-5">
       {/* Make */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.2s", opacity: 0 }}>
-        <label className="label-glass">Make</label>
-        <select {...register("make")} className="input-glass" defaultValue="">
-          <option value="" className="bg-midnight">
+      <div>
+        <label className={labelClass}>Make</label>
+        <select {...register("make")} className={inputClass} defaultValue="">
+          <option value="" className="bg-paper">
             Select make...
           </option>
           {makes.map((m) => (
-            <option key={m} value={m} className="bg-midnight">
+            <option key={m} value={m} className="bg-paper">
               {m}
             </option>
           ))}
@@ -50,19 +56,19 @@ export default function FormFields({
       </div>
 
       {/* Model */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.25s", opacity: 0 }}>
-        <label className="label-glass">Model</label>
+      <div>
+        <label className={labelClass}>Model</label>
         <select
           {...register("model")}
-          className="input-glass"
+          className={inputClass}
           disabled={!selectedMake}
           defaultValue=""
         >
-          <option value="" className="bg-midnight">
+          <option value="" className="bg-paper">
             {selectedMake ? "Select model..." : "Select make first"}
           </option>
           {models.map((m) => (
-            <option key={m} value={m} className="bg-midnight">
+            <option key={m} value={m} className="bg-paper">
               {m}
             </option>
           ))}
@@ -71,40 +77,40 @@ export default function FormFields({
       </div>
 
       {/* Year */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.3s", opacity: 0 }}>
-        <label className="label-glass">Year</label>
+      <div>
+        <label className={labelClass}>Year</label>
         <input
           type="number"
           {...register("year")}
           placeholder="2020"
-          className="input-glass"
+          className={inputClass}
           defaultValue=""
         />
         {err("year")}
       </div>
 
       {/* Mileage */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.35s", opacity: 0 }}>
-        <label className="label-glass">Mileage (KM)</label>
+      <div>
+        <label className={labelClass}>Mileage (KM)</label>
         <input
           type="number"
           {...register("mileage")}
           placeholder="85,000"
-          className="input-glass"
+          className={inputClass}
           defaultValue=""
         />
         {err("mileage")}
       </div>
 
       {/* Body Type */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.4s", opacity: 0 }}>
-        <label className="label-glass">Body Type</label>
-        <select {...register("body_type")} className="input-glass" defaultValue="">
-          <option value="" className="bg-midnight">
+      <div>
+        <label className={labelClass}>Body Type</label>
+        <select {...register("body_type")} className={inputClass} defaultValue="">
+          <option value="" className="bg-paper">
             Select body type...
           </option>
           {BODY_TYPES.map((bt) => (
-            <option key={bt} value={bt} className="bg-midnight">
+            <option key={bt} value={bt} className="bg-paper">
               {bt}
             </option>
           ))}
@@ -113,14 +119,14 @@ export default function FormFields({
       </div>
 
       {/* Cylinders */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.45s", opacity: 0 }}>
-        <label className="label-glass">Cylinders</label>
-        <select {...register("cylinders")} className="input-glass" defaultValue="">
-          <option value="" className="bg-midnight">
+      <div>
+        <label className={labelClass}>Cylinders</label>
+        <select {...register("cylinders")} className={inputClass} defaultValue="">
+          <option value="" className="bg-paper">
             Select cylinders...
           </option>
           {CYLINDERS.map((c) => (
-            <option key={c} value={c} className="bg-midnight">
+            <option key={c} value={c} className="bg-paper">
               {c}
             </option>
           ))}
@@ -129,18 +135,14 @@ export default function FormFields({
       </div>
 
       {/* Transmission */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.5s", opacity: 0 }}>
-        <label className="label-glass">Transmission</label>
-        <select
-          {...register("transmission")}
-          className="input-glass"
-          defaultValue=""
-        >
-          <option value="" className="bg-midnight">
+      <div>
+        <label className={labelClass}>Transmission</label>
+        <select {...register("transmission")} className={inputClass} defaultValue="">
+          <option value="" className="bg-paper">
             Select transmission...
           </option>
           {TRANSMISSIONS.map((t) => (
-            <option key={t} value={t} className="bg-midnight">
+            <option key={t} value={t} className="bg-paper">
               {t}
             </option>
           ))}
@@ -149,19 +151,15 @@ export default function FormFields({
       </div>
 
       {/* Fuel Type */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.55s", opacity: 0 }}>
-        <label className="label-glass">Fuel Type</label>
-        <select
-          {...register("fuel_type")}
-          className="input-glass"
-          defaultValue=""
-        >
-          <option value="" className="bg-midnight">
+      <div>
+        <label className={labelClass}>Fuel Type</label>
+        <select {...register("fuel_type")} className={inputClass} defaultValue="">
+          <option value="" className="bg-paper">
             Select fuel type...
           </option>
-          {FUEL_TYPES.map((ft) => (
-            <option key={ft} value={ft} className="bg-midnight">
-              {ft}
+          {FUEL_TYPES.map((f) => (
+            <option key={f} value={f} className="bg-paper">
+              {f}
             </option>
           ))}
         </select>
@@ -169,14 +167,14 @@ export default function FormFields({
       </div>
 
       {/* Color */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.6s", opacity: 0 }}>
-        <label className="label-glass">Color</label>
-        <select {...register("color")} className="input-glass" defaultValue="">
-          <option value="" className="bg-midnight">
+      <div>
+        <label className={labelClass}>Color</label>
+        <select {...register("color")} className={inputClass} defaultValue="">
+          <option value="" className="bg-paper">
             Select color...
           </option>
           {COLORS.map((c) => (
-            <option key={c} value={c} className="bg-midnight">
+            <option key={c} value={c} className="bg-paper">
               {c}
             </option>
           ))}
@@ -185,18 +183,14 @@ export default function FormFields({
       </div>
 
       {/* Location */}
-      <div className="animate-fade-in" style={{ animationDelay: "0.65s", opacity: 0 }}>
-        <label className="label-glass">Location</label>
-        <select
-          {...register("location")}
-          className="input-glass"
-          defaultValue=""
-        >
-          <option value="" className="bg-midnight">
+      <div>
+        <label className={labelClass}>Location</label>
+        <select {...register("location")} className={inputClass} defaultValue="">
+          <option value="" className="bg-paper">
             Select location...
           </option>
           {LOCATIONS.map((l) => (
-            <option key={l} value={l} className="bg-midnight">
+            <option key={l} value={l} className="bg-paper">
               {l}
             </option>
           ))}

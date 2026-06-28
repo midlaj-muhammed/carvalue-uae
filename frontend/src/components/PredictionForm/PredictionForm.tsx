@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, ArrowRight, AlertCircle } from "lucide-react";
+import { Loader2, ArrowRight } from "lucide-react";
 import { useMakes } from "@/hooks/useMakes";
 import { useModels } from "@/hooks/useModels";
 import { usePrediction } from "@/hooks/usePrediction";
@@ -55,14 +55,14 @@ export default function PredictionForm() {
   };
 
   return (
-    <div className="card-glass p-8 sm:p-10 animate-fade-in-up" style={{ animationDelay: "0.15s", opacity: 0 }}>
+    <div className="bg-paper border border-border-light rounded-editorial p-8 sm:p-10">
       {/* Section label */}
       <div className="flex items-center gap-3 mb-8">
-        <div className="h-px flex-1 bg-gradient-to-r from-gold/20 to-transparent" />
-        <span className="text-[10px] uppercase tracking-[0.2em] text-gold/50 font-body whitespace-nowrap">
+        <div className="h-px flex-1 bg-border-light" />
+        <span className="text-[10px] uppercase tracking-[0.2em] text-ash font-geist whitespace-nowrap">
           Vehicle Details
         </span>
-        <div className="h-px flex-1 bg-gradient-to-l from-gold/20 to-transparent" />
+        <div className="h-px flex-1 bg-border-light" />
       </div>
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -78,17 +78,17 @@ export default function PredictionForm() {
         <button
           type="submit"
           disabled={mutation.isPending}
-          className="mt-8 w-full h-[52px] rounded-xl font-display font-semibold text-[15px] tracking-wide
-                     bg-gradient-to-r from-gold to-gold-dark text-midnight
-                     hover:from-gold-light hover:to-gold hover:shadow-lg hover:shadow-gold/20
+          className="mt-8 w-full h-[52px] rounded-pill font-geist font-medium text-[13px] tracking-wide uppercase
+                     bg-onyx text-paper
+                     hover:bg-obsidian/90
                      active:scale-[0.98]
                      disabled:opacity-40 disabled:cursor-not-allowed
-                     transition-all duration-300 ease-out
+                     transition-all duration-200 ease-out
                      flex items-center justify-center gap-2.5"
         >
           {mutation.isPending ? (
             <>
-              <Loader2 className="h-[18px] w-[18px] animate-spin" />
+              <Loader2 className="h-4 w-4 animate-spin" />
               <span>Analyzing Market Data...</span>
             </>
           ) : (
@@ -98,15 +98,6 @@ export default function PredictionForm() {
             </>
           )}
         </button>
-
-        {mutation.isError && (
-          <div className="mt-5 px-4 py-3.5 rounded-xl bg-red-500/10 border border-red-500/20 flex items-start gap-3 animate-scale-in">
-            <AlertCircle className="h-4 w-4 text-red-400 mt-0.5 shrink-0" />
-            <p className="text-[13px] text-red-300 font-body leading-relaxed">
-              {mutation.error.message}
-            </p>
-          </div>
-        )}
       </form>
     </div>
   );

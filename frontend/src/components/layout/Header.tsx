@@ -1,22 +1,24 @@
+import { Link } from "react-router-dom";
 import { Gauge } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="relative z-10 border-b border-white/[0.06]">
-      <div className="max-w-2xl mx-auto px-4 py-5 flex items-center justify-between">
-        <div className="flex items-center gap-2.5">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-gold to-gold-dark flex items-center justify-center shadow-lg shadow-gold/20">
-            <Gauge className="h-[18px] w-[18px] text-midnight" strokeWidth={2.5} />
+    <header className="sticky top-0 z-50 bg-paper border-b border-border-light">
+      <div className="max-w-2xl mx-auto px-4 py-4 flex items-center justify-between">
+        <Link to="/" className="flex items-center gap-2.5 no-underline">
+          <div className="w-8 h-8 rounded-full bg-obsidian flex items-center justify-center">
+            <Gauge className="w-4 h-4 text-paper" strokeWidth={2} />
           </div>
-          <span className="text-[17px] font-display font-semibold text-white tracking-tight">
+          <span className="font-geist font-medium text-[15px] text-obsidian tracking-tight">
             CarValue
-            <span className="text-gold ml-1">UAE</span>
           </span>
-        </div>
-        <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.12em] text-white/30 font-body">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400/50" />
-          Live
-        </div>
+        </Link>
+        <Link
+          to="/"
+          className="text-[12px] font-medium text-graphite hover:text-obsidian transition-colors no-underline tracking-wide"
+        >
+          &larr; Home
+        </Link>
       </div>
     </header>
   );
