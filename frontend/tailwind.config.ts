@@ -5,6 +5,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Dark theme (prediction page)
         midnight: {
           DEFAULT: "#0A1628",
           50: "#1A2A44",
@@ -26,10 +27,27 @@ const config: Config = {
           medium: "#FFFFFF1A",
           strong: "#FFFFFF25",
         },
+        // Light theme (landing page) — Titan editorial
+        obsidian: "#111111",
+        paper: "#ffffff",
+        linen: "#e9eaeb",
+        sand: "#d8d3cc",
+        graphite: "#615e5b",
+        ash: "#888888",
+        onyx: "#000000",
+        mist: "#f5f5f5",
+        "border-light": "#e5e5e5",
       },
       fontFamily: {
         display: ['"DM Sans"', "sans-serif"],
         body: ['"Outfit"', "sans-serif"],
+        geist: ['"Geist"', '"Inter"', "system-ui", "sans-serif"],
+        mono: ['"Geist Mono"', '"SF Mono"', "Menlo", "monospace"],
+      },
+      borderRadius: {
+        pill: "160px",
+        nav: "140px",
+        editorial: "32px",
       },
       animation: {
         "fade-in": "fadeIn 0.8s ease-out forwards",
