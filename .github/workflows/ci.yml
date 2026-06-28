@@ -309,6 +309,11 @@ jobs:
           echo "sha=$SHORT_SHA" >> $GITHUB_OUTPUT
           echo "timestamp=$(date +%Y%m%d%H%M%S)" >> $GITHUB_OUTPUT
 
+      - name: Prune buildx cache
+        run: |
+          docker buildx prune -af 2>/dev/null || true
+          docker builder rm -f buildx_buildkit_* 2>/dev/null || true
+
       - name: Build and push backend image
         run: |
           docker build \
