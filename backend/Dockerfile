@@ -23,4 +23,4 @@ RUN MODEL_PATH=ml/model.pkl uv run --package carvalue-backend python ml/train.py
 
 EXPOSE 8000
 
-CMD ["uv", "run", "--package", "carvalue-backend", "uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uv", "run", "--package", "carvalue-backend", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--app-dir", "backend"]
