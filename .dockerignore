@@ -1,5 +1,4 @@
 frontend/
-ml/data/
 ml/registry/
 .ml/__pycache__/
 __pycache__/
