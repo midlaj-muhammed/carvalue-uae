@@ -17,9 +17,6 @@ jobs:
   ml:
     name: ML Pipeline
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ml
 
     steps:
       - uses: actions/checkout@v4
@@ -33,31 +30,24 @@ jobs:
         run: uv python install ${{ env.PYTHON_VERSION }}
 
       - name: Install dependencies
-        run: |
-          cd ..
-          uv sync
+        run: uv sync
 
       - name: Train model
-        run: |
-          if [ -f train.py ]; then
-            uv run python train.py
-          else
-            echo "WARNING: train.py not found — using existing model.pkl if present"
-          fi
+        run: uv run python ml/train.py
 
       - name: Verify model artifact
         run: |
-          if [ ! -f model.pkl ]; then
-            echo "ERROR: model.pkl not found after training"
+          if [ ! -f ml/model.pkl ]; then
+            echo "ERROR: ml/model.pkl not found after training"
             exit 1
           fi
-          echo "model.pkl exists ($(stat -c%s model.pkl) bytes)"
+          echo "ml/model.pkl exists ($(stat -c%s ml/model.pkl) bytes)"
 
       - name: Verify model integrity (SHA-256)
         run: |
-          if [ -f model.pkl.sha256 ]; then
-            computed=$(sha256sum model.pkl | cut -d' ' -f1)
-            expected=$(cat model.pkl.sha256)
+          if [ -f ml/model.pkl.sha256 ]; then
+            computed=$(sha256sum ml/model.pkl | cut -d' ' -f1)
+            expected=$(cat ml/model.pkl.sha256)
             if [ "$computed" != "$expected" ]; then
               echo "ERROR: SHA-256 mismatch"
               echo "  Expected: $expected"
@@ -66,14 +56,12 @@ jobs:
             fi
             echo "SHA-256 integrity check passed"
           else
-            echo "WARNING: model.pkl.sha256 not found — generating"
-            sha256sum model.pkl | cut -d' ' -f1 > model.pkl.sha256
+            echo "WARNING: ml/model.pkl.sha256 not found — generating"
+            sha256sum ml/model.pkl | cut -d' ' -f1 > ml/model.pkl.sha256
           fi
 
       - name: Evaluate model (accuracy gate + ratchet + fixtures)
-        run: |
-          uv run python evaluate.py
-        # evaluate.py: ratchet checks baseline.json, runs 50 fixtures, fails if R² < 0.82
+        run: uv run python ml/evaluate.py
 
       - name: Upload model artifact
         uses: actions/upload-artifact@v4
