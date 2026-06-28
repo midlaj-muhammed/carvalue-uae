@@ -19,7 +19,10 @@ build/
 *.sqlite
 *.sqlite3
 
-# ML training artifacts (not needed in repo)
+# ML model (trained in CI — pickled models aren't cross-Python-version compatible)
+ml/model.pkl
+ml/model.pkl.sha256
+ml/confidence_lookup.pkl
 ml/registry/model_*.pkl
 ml/data/*.csv.sha256
 catboost_info/

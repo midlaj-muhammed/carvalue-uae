@@ -9,7 +9,6 @@ on:
 env:
   PYTHON_VERSION: "3.11"
   NODE_VERSION: "18"
-  MODEL_PATH: ml/model.pkl
   EVAL_THRESHOLD_R2: "0.75"
 
 jobs:
@@ -34,13 +33,10 @@ jobs:
           uv sync
           uv pip install joblib xgboost scikit-learn pandas numpy
 
-      - name: Train model (skip if model.pkl exists in repo)
-        run: |
-          if [ -f ml/model.pkl ]; then
-            echo "model.pkl exists — skipping training"
-          else
-            uv run python ml/train.py
-          fi
+      - name: Train model
+        env:
+          MODEL_PATH: ml/model.pkl
+        run: uv run python ml/train.py
 
       - name: Verify model artifact
         run: |
@@ -68,6 +64,8 @@ jobs:
           fi
 
       - name: Evaluate model (accuracy gate + ratchet + fixtures)
+        env:
+          MODEL_PATH: ml/model.pkl
         run: uv run python ml/evaluate.py
 
       - name: Upload model artifact
