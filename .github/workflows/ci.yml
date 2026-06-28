@@ -103,6 +103,7 @@ jobs:
         run: |
           cd ..
           uv sync
+          uv pip install flake8
           cd backend
 
       - name: Lint with flake8
