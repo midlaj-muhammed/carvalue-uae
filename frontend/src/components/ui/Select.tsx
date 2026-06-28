@@ -44,8 +44,11 @@ const SelectContent = React.forwardRef<
         "relative z-[100] max-h-72 min-w-[8rem] overflow-hidden rounded-2xl",
         "bg-paper border border-obsidian/[0.08]",
         "shadow-[0_16px_64px_rgba(0,0,0,0.12)]",
-        "data-[state=open]:animate-fade-in-up data-[state=closed]:animate-fade-in",
-        "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
+        "data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
+        "data-[state=open]:duration-150",
+        "data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95",
+        "data-[state=closed]:duration-100",
+        "data-[side=bottom]:slide-in-from-top-2 data-[side=top]:slide-in-from-bottom-2",
         position === "popper" && "data-[side=bottom]:translate-y-1 data-[side=top]:-translate-y-1",
         className
       )}
