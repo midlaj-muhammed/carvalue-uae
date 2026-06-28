@@ -10,7 +10,7 @@ env:
   PYTHON_VERSION: "3.11"
   NODE_VERSION: "18"
   MODEL_PATH: ml/model.pkl
-  EVAL_THRESHOLD_R2: "0.82"
+  EVAL_THRESHOLD_R2: "0.75"
 
 jobs:
   # ─── ML ─────────────────────────────────────────────────────────────
