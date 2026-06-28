@@ -1,0 +1,63 @@
+# Dependencies
+node_modules/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# Environment
+.env
+.env.local
+.env.*.local
+.env.staging
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# ML model (large files — train locally)
+ml/model.pkl
+ml/model.pkl.sha256
+ml/confidence_lookup.pkl
+ml/registry/model_*.pkl
+ml/data/*.csv.sha256
+catboost_info/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Frontend build
+frontend/dist/
+frontend/.env
+
+# Test artifacts
+.pytest_cache/
+.coverage
+htmlcov/
+test-results.xml
+*.log
+
+# Docker
+docker-compose.override.yml
+
+# Editor / tooling
+.claude/
+.opencode/
+.gstack/
+
+# Development artifacts
+report/
+plan/
+skills/

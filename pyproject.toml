@@ -1,0 +1,9 @@
+[project]
+name = "carvalue-uae"
+version = "1.0.0"
+description = "Used car price prediction web app for the UAE market"
+requires-python = ">=3.11"
+readme = "CLAUDE.md"
+
+[tool.uv.workspace]
+members = ["backend", "ml"]
