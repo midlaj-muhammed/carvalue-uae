@@ -337,50 +337,16 @@ jobs:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Download model artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: model-pkl
-          path: ml/
-
-      - name: Download model hash
-        uses: actions/download-artifact@v4
-        with:
-          name: model-pkl-sha256
-          path: ml/
-
-      # ── Backend: Railway ──
-      - name: Deploy backend to Railway
-        uses: bervProject/railway-deploy@v1
-        with:
-          railway_token: ${{ secrets.RAILWAY_TOKEN }}
-          service: backend
-          project_id: ${{ secrets.RAILWAY_PROJECT_ID }}
-        continue-on-error: true
-
-      # ── Frontend: Vercel (conditional) ──
-      - name: Deploy frontend to Vercel
-        if: hashFiles('frontend/package.json') != ''
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: --prod
-        continue-on-error: true
-
-      - name: Notify deploy status
+      - name: Deployment summary
         run: |
-          echo "## Deployment Complete" >> $GITHUB_STEP_SUMMARY
+          echo "## Deployment Ready" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "- Backend → Railway" >> $GITHUB_STEP_SUMMARY
-          echo "- Frontend → Vercel" >> $GITHUB_STEP_SUMMARY
+          echo "All CI checks passed. To deploy:" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Model Caching" >> $GITHUB_STEP_SUMMARY
-          echo "Backend startup checks for cached model.pkl — skips training if found." >> $GITHUB_STEP_SUMMARY
+          echo "### Backend (Railway)" >> $GITHUB_STEP_SUMMARY
+          echo "1. Add secrets: RAILWAY_TOKEN, RAILWAY_PROJECT_ID" >> $GITHUB_STEP_SUMMARY
+          echo "2. Docker image: ghcr.io/${{ github.repository }}/backend:latest" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "### Rollback" >> $GITHUB_STEP_SUMMARY
-          echo "To rollback, redeploy the previous Docker image tag from:" >> $GITHUB_STEP_SUMMARY
-          echo "ghcr.io/${{ github.repository }}/backend:<previous-tag>" >> $GITHUB_STEP_SUMMARY
+          echo "### Frontend (Vercel)" >> $GITHUB_STEP_SUMMARY
+          echo "1. Add secrets: VERCEL_TOKEN, VERCEL_ORG_ID, VERCEL_PROJECT_ID" >> $GITHUB_STEP_SUMMARY
+          echo "2. Connect repo at vercel.com/new" >> $GITHUB_STEP_SUMMARY
