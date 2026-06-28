@@ -19,10 +19,7 @@ build/
 *.sqlite
 *.sqlite3
 
-# ML model (large files — train locally)
-ml/model.pkl
-ml/model.pkl.sha256
-ml/confidence_lookup.pkl
+# ML training artifacts (not needed in repo)
 ml/registry/model_*.pkl
 ml/data/*.csv.sha256
 catboost_info/

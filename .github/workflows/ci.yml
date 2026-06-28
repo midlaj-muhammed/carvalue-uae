@@ -34,8 +34,13 @@ jobs:
           uv sync
           uv pip install joblib xgboost scikit-learn pandas numpy
 
-      - name: Train model
-        run: uv run python ml/train.py
+      - name: Train model (skip if model.pkl exists in repo)
+        run: |
+          if [ -f ml/model.pkl ]; then
+            echo "model.pkl exists — skipping training"
+          else
+            uv run python ml/train.py
+          fi
 
       - name: Verify model artifact
         run: |
