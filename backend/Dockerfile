@@ -5,13 +5,16 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
 WORKDIR /app
 
-# Install dependencies first (layer caching)
-COPY pyproject.toml ./
-RUN uv sync --frozen --no-dev
+# Copy workspace files (uv needs root pyproject.toml + uv.lock)
+COPY pyproject.toml uv.lock ./
+COPY backend/pyproject.toml ./backend/
 
-# Copy application code
-COPY . .
+# Install dependencies
+RUN uv sync --no-dev
+
+# Copy backend application code
+COPY backend/ ./backend/
 
 EXPOSE 8000
 
-CMD ["uv", "run", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uv", "run", "uvicorn", "backend.app.main:app", "--host", "0.0.0.0", "--port", "8000"]
