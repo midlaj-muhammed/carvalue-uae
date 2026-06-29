@@ -41,7 +41,7 @@ export default function ProcessSection() {
         {steps.map((s, i) => (
           <ScrollReveal key={s.num} delay={i * 80}>
             <div className="group flex items-start gap-6 py-8 border-b border-obsidian/[0.06] last:border-b-0">
-              <div className="flex-shrink-0 w-12 h-12 rounded-full border border-obsidian/[0.12] flex items-center justify-center group-hover:bg-onyx group-hover:border-onyx transition-all duration-300">
+              <div className="flex-shrink-0 w-12 h-12 rounded-full border border-obsidian/[0.12] flex items-center justify-center group-hover:bg-onyx group-hover:border-onyx transition-all duration-200">
                 <span className="font-mono text-sm font-medium text-obsidian group-hover:text-paper transition-colors duration-300">
                   {s.num}
                 </span>

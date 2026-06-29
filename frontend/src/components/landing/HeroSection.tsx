@@ -60,7 +60,7 @@ export default function HeroSection() {
               className="group btn-press inline-flex items-center gap-2.5 bg-onyx text-paper pl-7 pr-2 py-2.5 rounded-full text-[13px] font-medium tracking-wide hover:bg-obsidian/90 transition-colors duration-200 no-underline"
             >
               <span>Start Valuing</span>
-              <span className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center group-hover:translate-x-0.5 group-hover:scale-105 transition-all duration-200">
+              <span className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center group-hover:translate-x-0.5 group-hover:scale-105 transition-transform duration-200">
                 <ArrowRight className="w-3.5 h-3.5" />
               </span>
             </Link>

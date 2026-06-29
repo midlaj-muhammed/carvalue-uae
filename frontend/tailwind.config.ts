@@ -75,8 +75,8 @@ const config: Config = {
           "100%": { opacity: "1", transform: "scale(1)" },
         },
         pulseGold: {
-          "0%, 100%": { boxShadow: "0 0 0 0 rgba(201, 168, 76, 0.3)" },
-          "50%": { boxShadow: "0 0 0 8px rgba(201, 168, 76, 0)" },
+          "0%, 100%": { opacity: "0.4" },
+          "50%": { opacity: "1" },
         },
         shimmer: {
           "0%": { backgroundPosition: "-200% 0" },

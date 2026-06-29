@@ -111,7 +111,7 @@ export default function PredictionForm() {
               ) : (
                 <span>Get Estimate</span>
               )}
-              <span className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center group-hover:translate-x-0.5 group-hover:scale-105 transition-all duration-200 flex-shrink-0">
+              <span className="w-8 h-8 rounded-full bg-white/15 flex items-center justify-center group-hover:translate-x-0.5 group-hover:scale-105 transition-transform duration-200 flex-shrink-0">
                 <ArrowRight className="h-4 w-4" />
               </span>
             </button>

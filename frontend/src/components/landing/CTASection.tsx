@@ -34,7 +34,7 @@ export default function CTASection() {
             className="group btn-press inline-flex items-center gap-2.5 bg-paper text-onyx pl-7 pr-2 py-2.5 rounded-full text-[13px] font-medium tracking-wide hover:bg-paper/90 transition-colors duration-200 no-underline"
           >
             <span>Start Valuing</span>
-            <span className="w-8 h-8 rounded-full bg-onyx/10 flex items-center justify-center group-hover:translate-x-0.5 group-hover:scale-105 transition-all duration-200">
+            <span className="w-8 h-8 rounded-full bg-onyx/10 flex items-center justify-center group-hover:translate-x-0.5 group-hover:scale-105 transition-transform duration-200">
               <ArrowRight className="w-3.5 h-3.5 text-onyx" />
             </span>
           </Link>
