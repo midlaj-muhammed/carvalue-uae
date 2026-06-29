@@ -107,11 +107,15 @@ export default function FormFields({
 
       {/* Year */}
       <div>
-        <label className={labelClass}>Year</label>
+        <label className={labelClass} htmlFor="year">Year</label>
         <input
+          id="year"
           type="number"
           {...register("year")}
           placeholder="2020"
+          min={2005}
+          max={new Date().getFullYear()}
+          step={1}
           className={inputClass}
           defaultValue=""
         />
@@ -120,11 +124,15 @@ export default function FormFields({
 
       {/* Mileage */}
       <div>
-        <label className={labelClass}>Mileage (KM)</label>
+        <label className={labelClass} htmlFor="mileage">Mileage (KM)</label>
         <input
+          id="mileage"
           type="number"
           {...register("mileage")}
-          placeholder="85,000"
+          placeholder="85000"
+          min={0}
+          max={999999}
+          step={1}
           className={inputClass}
           defaultValue=""
         />

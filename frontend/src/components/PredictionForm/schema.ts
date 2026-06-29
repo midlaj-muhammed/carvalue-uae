@@ -5,8 +5,15 @@ const currentYear = new Date().getFullYear();
 export const predictionSchema = z.object({
   make: z.string().min(1, "Make is required"),
   model: z.string().min(1, "Model is required"),
-  year: z.coerce.number().min(2005, "Year must be 2005 or later").max(currentYear, `Year must be ${currentYear} or earlier`),
-  mileage: z.coerce.number().min(0, "Mileage cannot be negative").max(999999, "Mileage too high"),
+  year: z.coerce
+    .number()
+    .int("Year must be a whole number")
+    .min(2005, "Year must be 2005 or later")
+    .max(currentYear, `Year must be ${currentYear} or earlier`),
+  mileage: z.coerce
+    .number()
+    .min(0, "Mileage cannot be negative")
+    .max(999999, "Mileage too high"),
   body_type: z.string().min(1, "Body type is required"),
   cylinders: z.coerce.number().min(0, "Cylinders required").max(12, "Cylinders cannot exceed 12"),
   transmission: z.string().min(1, "Transmission is required"),

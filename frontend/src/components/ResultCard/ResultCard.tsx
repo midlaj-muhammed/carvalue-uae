@@ -35,6 +35,7 @@ export default function ResultCard({ result }: Props) {
               onClick={reset}
               className="group flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-linen border border-obsidian/[0.06]
                          hover:bg-sand/40 transition-colors duration-200"
+              aria-label="New prediction"
               title="New prediction"
             >
               <span className="text-[11px] font-medium text-graphite group-hover:text-obsidian transition-colors duration-200">

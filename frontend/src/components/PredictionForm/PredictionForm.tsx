@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Loader2, ArrowRight } from "lucide-react";
+import { Loader2, ArrowRight, AlertCircle } from "lucide-react";
 import { useMakes } from "@/hooks/useMakes";
 import { useModels } from "@/hooks/useModels";
 import { usePrediction } from "@/hooks/usePrediction";
@@ -39,6 +39,7 @@ export default function PredictionForm() {
   const setLastRequest = usePredictionStore((s) => s.setLastRequest);
 
   const onSubmit = (data: PredictionFormData) => {
+    setLastResult(null);
     const payload = {
       ...data,
       make: data.make.toLowerCase(),
@@ -75,11 +76,23 @@ export default function PredictionForm() {
             selectedMake={selectedMake}
           />
 
+          {/* Error feedback */}
+          {mutation.isError && (
+            <div className="mt-4 flex items-center gap-2 px-4 py-3 rounded-xl bg-red-50 border border-red-100">
+              <AlertCircle className="h-4 w-4 text-red-500 flex-shrink-0" />
+              <p className="text-[13px] text-red-600 font-geist">
+                {mutation.error instanceof Error ? mutation.error.message : "Something went wrong. Please try again."}
+              </p>
+            </div>
+          )}
+
           {/* Submit — Button-in-Button */}
           <div className="mt-8">
             <button
               type="submit"
               disabled={mutation.isPending}
+              aria-disabled={mutation.isPending}
+              aria-busy={mutation.isPending}
               className="group btn-press w-full flex items-center justify-between h-[52px] rounded-full pl-7 pr-2 bg-onyx text-paper font-geist font-medium text-[13px] tracking-wide uppercase
                          hover:bg-obsidian/90
                          disabled:opacity-40 disabled:cursor-not-allowed

@@ -5,7 +5,7 @@ interface PredictionState {
   lastRequest: PredictionRequest | null;
   lastResult: PredictionResult | null;
   setLastRequest: (req: PredictionRequest) => void;
-  setLastResult: (res: PredictionResult) => void;
+  setLastResult: (res: PredictionResult | null) => void;
   reset: () => void;
 }
 
