@@ -22,14 +22,6 @@ export default function PredictionForm() {
     formState: { errors },
   } = useForm<PredictionFormData>({
     resolver: zodResolver(predictionSchema),
-    defaultValues: {
-      year: new Date().getFullYear() - 3,
-      mileage: 50000,
-      transmission: "Automatic Transmission",
-      fuel_type: "Petrol",
-      color: "White",
-      location: "Dubai",
-    },
   });
 
   const selectedMake = watch("make") || "";
