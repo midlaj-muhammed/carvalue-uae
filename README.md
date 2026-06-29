@@ -6,6 +6,7 @@
 
 <p align="center">
   <a href="https://trycarvalue.vercel.app">Live Demo</a> ·
+  <a href="https://carvalue-uae-api.onrender.com/docs">API Docs</a> ·
   <a href="https://github.com/midlaj-muhammed/carvalue-uae/issues">Report Bug</a> ·
   <a href="https://github.com/midlaj-muhammed/carvalue-uae/pulls">Contribute</a>
 </p>
@@ -16,29 +17,35 @@
   Enter your car details and get an instant market-value estimate in AED — powered by XGBoost and trained on 10,000+ real UAE listings.
 </p>
 
-## Features
-
-- **Instant Price Estimates** — Get predicted market value in AED with confidence scoring
-- **UAE-Focused** — Trained on 10,000+ real listings from Dubai, Abu Dhabi, Sharjah, and all 7 emirates
-- **65 Car Makes** — Supports Toyota, BMW, Mercedes-Benz, Nissan, and 61 more
-- **Confidence Tiers** — High / Medium / Low ratings based on listing density per make and model
-- **Mobile-First** — Responsive dark UI optimized for all screen sizes
-- **RESTful API** — Clean JSON endpoints for integration into any platform
-
 ## Live Demo
 
 **Frontend:** [trycarvalue.vercel.app](https://trycarvalue.vercel.app)
 
 **Backend API:** [carvalue-uae-api.onrender.com](https://carvalue-uae-api.onrender.com)
 
+**Interactive API Docs (Swagger):** [carvalue-uae-api.onrender.com/docs](https://carvalue-uae-api.onrender.com/docs)
+
+**Interactive API Docs (ReDoc):** [carvalue-uae-api.onrender.com/redoc](https://carvalue-uae-api.onrender.com/redoc)
+
 > The backend is on Render's free tier. First request after inactivity may take ~30s to wake up.
+
+## Features
+
+- **Instant Price Estimates** — Get predicted market value in AED with confidence scoring
+- **UAE-Focused** — Trained on 10,000+ real listings from Dubai, Abu Dhabi, Sharjah, and all 7 emirates
+- **65 Car Makes** — Supports Toyota, BMW, Mercedes-Benz, Nissan, and 61 more
+- **Confidence Tiers** — High / Medium / Low ratings based on listing density per make and model
+- **Mobile-First** — Responsive editorial design optimized for all screen sizes
+- **Interactive API** — Full OpenAPI/Swagger docs for testing and integration
+- **Smart Defaults** — Form pre-fills common options to reduce friction
+- **Error Handling** — Structured errors with validation messages and retry guidance
 
 ## Tech Stack
 
 | Layer | Technology |
 |---|---|
-| Frontend | React 18 · Vite · TypeScript · Tailwind CSS |
-| Backend | FastAPI · Python 3.11 · SQLAlchemy |
+| Frontend | React 18 · Vite · TypeScript · Tailwind CSS · Radix UI |
+| Backend | FastAPI · Python 3.11 · SQLAlchemy · slowapi |
 | ML Model | XGBoost Regressor · scikit-learn · target encoding |
 | Database | PostgreSQL (prediction logs) |
 | Package Mgr | uv (Python) · npm (frontend) |
@@ -53,7 +60,7 @@
 - Node.js 18+
 - [uv](https://docs.astral.sh/uv/) — fast Python package manager
 
-### Local Development
+### Option 1: Local Development (Recommended)
 
 ```bash
 # Clone the repository
@@ -78,22 +85,32 @@ cd frontend && npm run dev
 
 Open [http://localhost:5173](http://localhost:5173)
 
-### Docker
+### Option 2: Docker
 
 ```bash
+# Clone and start everything
+git clone https://github.com/midlaj-muhammed/carvalue-uae.git
+cd carvalue-uae
 docker-compose up --build
 ```
+
+Backend: [http://localhost:8000](http://localhost:8000)
+Frontend: [http://localhost:5173](http://localhost:5173)
 
 ## API
 
 Base URL: `https://carvalue-uae-api.onrender.com`
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `POST` | `/api/v1/predict` | Get price prediction |
-| `GET` | `/api/v1/makes` | List all car makes (65) |
-| `GET` | `/api/v1/models?make=toyota` | Models filtered by make |
-| `GET` | `/api/v1/health` | Health check |
+| Method | Endpoint | Description | Rate Limit |
+|--------|----------|-------------|------------|
+| `POST` | `/api/v1/predict` | Get price prediction | 10/min |
+| `GET` | `/api/v1/makes` | List all car makes (65) | 60/min |
+| `GET` | `/api/v1/models?make=toyota` | Models filtered by make | 60/min |
+| `GET` | `/api/v1/health` | Health check | 60/min |
+
+### Interactive Testing
+
+Visit **[/docs](https://carvalue-uae-api.onrender.com/docs)** to test the API directly in your browser with Swagger UI, or **[/redoc](https://carvalue-uae-api.onrender.com/redoc)** for the ReDoc documentation.
 
 ### Example Request
 
@@ -131,6 +148,16 @@ curl -X POST https://carvalue-uae-api.onrender.com/api/v1/predict \
 }
 ```
 
+### Error Response
+
+```json
+{
+  "success": false,
+  "data": null,
+  "error": "Invalid input: year must be between 2005 and 2026"
+}
+```
+
 ## Project Structure
 
 ```
@@ -146,7 +173,13 @@ carvalue-uae/
 ├── frontend/                 # React application
 │   └── src/
 │       ├── components/       # UI components
+│       │   ├── landing/      # Landing page sections
+│       │   ├── PredictionForm/ # Prediction form
+│       │   ├── ResultCard/   # Result display
+│       │   ├── layout/       # Header, Footer
+│       │   └── ui/           # Select, ScrollReveal, ErrorBoundary
 │       ├── hooks/            # Custom React hooks
+│       ├── pages/            # Landing, Predict, NotFound
 │       ├── services/         # API client
 │       └── store/            # Zustand state
 ├── ml/                       # ML pipeline

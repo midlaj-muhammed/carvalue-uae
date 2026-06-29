@@ -22,6 +22,14 @@ export default function PredictionForm() {
     formState: { errors },
   } = useForm<PredictionFormData>({
     resolver: zodResolver(predictionSchema),
+    defaultValues: {
+      year: new Date().getFullYear() - 3,
+      mileage: 50000,
+      transmission: "Automatic Transmission",
+      fuel_type: "Petrol",
+      color: "White",
+      location: "Dubai",
+    },
   });
 
   const selectedMake = watch("make") || "";
@@ -76,13 +84,18 @@ export default function PredictionForm() {
             selectedMake={selectedMake}
           />
 
-          {/* Error feedback */}
+          {/* Error feedback — specific messages */}
           {mutation.isError && (
-            <div className="mt-4 flex items-center gap-2 px-4 py-3 rounded-xl bg-red-50 border border-red-100">
-              <AlertCircle className="h-4 w-4 text-red-500 flex-shrink-0" />
-              <p className="text-[13px] text-red-600 font-geist">
-                {mutation.error instanceof Error ? mutation.error.message : "Something went wrong. Please try again."}
-              </p>
+            <div className="mt-4 flex items-start gap-2 px-4 py-3 rounded-xl bg-red-50 border border-red-100">
+              <AlertCircle className="h-4 w-4 text-red-500 flex-shrink-0 mt-0.5" />
+              <div className="text-[13px] text-red-600 font-geist">
+                <p className="font-medium mb-0.5">Prediction failed</p>
+                <p className="text-red-500 text-[12px]">
+                  {mutation.error instanceof Error
+                    ? mutation.error.message
+                    : "Could not reach the prediction service. The backend may be waking up — try again in 30 seconds."}
+                </p>
+              </div>
             </div>
           )}
 
