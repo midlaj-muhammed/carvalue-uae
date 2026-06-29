@@ -73,14 +73,9 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Right — Image with Double-Bezel, delayed entrance */}
-        <div
-          className="relative"
-          style={{
-            opacity: 0,
-            animation: "fadeIn 600ms cubic-bezier(0.23,1,0.32,1) 300ms forwards",
-          }}
-        >
+        {/* Right — Image with Double-Bezel */}
+        <div className="relative">
+
           <div className="p-2 rounded-[2rem] bg-obsidian/[0.04] border border-obsidian/[0.06]">
             <img
               src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop&q=80"
