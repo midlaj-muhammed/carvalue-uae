@@ -2,8 +2,8 @@ import { ScrollReveal } from "@/components/ui/ScrollReveal";
 
 const stats = [
   { figure: "65", label: "Makes Supported" },
-  { figure: "10K+", label: "UAE Listings" },
-  { figure: "AED", label: "Real-Time Predictions" },
+  { figure: "10K+", label: "UAE Listings Analyzed" },
+  { figure: "2s", label: "Avg. Prediction Time" },
 ];
 
 export default function StatsSection() {
