@@ -36,8 +36,8 @@ export default function FeaturesSection() {
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
         {features.map((f, i) => (
           <ScrollReveal key={f.title} delay={i * 80} className="h-full">
-            <div className="group p-[6px] rounded-[2rem] bg-obsidian/[0.03] border border-obsidian/[0.05] hover:bg-obsidian/[0.06] transition-colors duration-300">
-              <div className="bg-linen rounded-[calc(2rem-6px)] p-8 h-full">
+            <div className="group h-full p-[6px] rounded-[2rem] bg-obsidian/[0.03] border border-obsidian/[0.05] hover:bg-obsidian/[0.06] transition-colors duration-300">
+              <div className="flex flex-col bg-linen rounded-[calc(2rem-6px)] p-8 h-full">
                 <div className="w-11 h-11 rounded-2xl bg-paper border border-obsidian/[0.06] flex items-center justify-center mb-6">
                   <f.icon className="w-5 h-5 text-obsidian" strokeWidth={1.5} />
                 </div>
